@@ -14,7 +14,7 @@ const Dashboard = () => {
   useEffect(() => {
     setUserId(id); 
     fetchFiles();
-  }, [id]);
+  }, []);
 
   const fetchFiles = async () => {
     try {
