@@ -1,14 +1,15 @@
-version: "3.9"
-
 services:
-  client:
-    build: ./client
+  frontend:
+    build: ./my-app
     ports:
       - "3000:3000"
     depends_on:
-      - server
+      - backend
 
-  server:
-    build: ./server
+  backend:
+    build: ./flask-backend
     ports:
       - "5000:5000"
+    volumes:
+      - ./flask-backend:/app
+      - ./flask-backend/instance:/app/instance
