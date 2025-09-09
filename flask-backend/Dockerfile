@@ -7,18 +7,15 @@ WORKDIR /app
 # Copy requirements file
 COPY requirements.txt .
 
-# Install dependencies
+# Install dependencies (make sure gunicorn is in requirements.txt)
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY . .
 
-# Expose port (default Flask port)
+# Expose port (Render will set $PORT environment variable)
 EXPOSE 5000
 
-# Set environment variables
-ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
+# Use Gunicorn with dynamic port for Render or other hosting
+CMD ["gunicorn", "-b", "0.0.0.0:$PORT", "app:app"]
 
-# Run the Flask app
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
