@@ -17,5 +17,5 @@ COPY . .
 EXPOSE 5000
 
 # Use Gunicorn with dynamic port for Render or other hosting
-CMD ["gunicorn", "-b", "0.0.0.0:$PORT", "app:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:500", "app:app"]
 
