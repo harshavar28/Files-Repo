@@ -1,0 +1,21 @@
+name: Build Docker Images
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Build Flask Backend Image
+        run: docker build -t flask-backend ./flask-backend
+
+      - name: Build React Frontend Image
+        run: docker build -t react-frontend ./my-app
